@@ -187,7 +187,7 @@ class ShiftTime extends Component {
     err = () => {
         if(this.state.sunFromTime === this.state.sunToTime){
             alert('CANNOT SELECT SAME TIME')
-        }
+        }        
     }
 
   handleDateChange = (date) => {

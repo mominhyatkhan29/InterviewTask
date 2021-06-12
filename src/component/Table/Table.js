@@ -113,7 +113,7 @@ class Table extends React.Component {
     return (
        
         <div>
-            {/* <MUIDataTable title={"ACME Employee list"} data={this.state.data} columns={columns} options={options} /> */}
+            <MUIDataTable title={"ACME Employee list"} data={this.state.data} columns={columns} options={options} />
         </div>
     );
 
