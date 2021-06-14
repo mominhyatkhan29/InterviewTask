@@ -172,9 +172,7 @@ class ShiftTime extends Component {
     }
 
     nextHandler = () => {
-        if(this.state.counter < 2){
-            alert("SELECT ATTLEAST 2 DAYS")
-        }
+        
     }
 
     TimeHandler=(e)=>{
@@ -196,14 +194,24 @@ class ShiftTime extends Component {
     })
   };
 
-  submitHandler = () =>{
-      console.log(this.state.counter)
-      if (this.state.counter>=2){
-          alert('successfully')
-      }
-      else{
-          alert('FORM NOT SUBMITTED')
-      }
+  submitHandler = (event) =>{
+      event.preventDefault();
+    //   console.log(this.state.counter)
+    //   if (this.state.counter>=2){
+    //       alert('Successfully Submitted')
+    //   }
+    //   else{
+    //       alert('FORM NOT SUBMITTED')
+    //   }
+      if(this.state.counter < 2){
+        alert("SELECT ATTLEAST 2 DAYS")
+    }
+    if(this.state.thursActive === true && this.state.thursFrom === "" && this.state.thursTo === ""){
+        alert("Select proper timings")
+    }
+    else{
+        alert('Successfully Submitted')
+    }
   }
 
   render(){

@@ -47,10 +47,14 @@ class CandidateType extends Component {
       })
   }
 
+  submitHandler = () => {
+    
+  }
+
   render(){
     const {classes} = this.props;
     return (
-        <form className={classes.root} noValidate autoComplete="off">
+        <form onSubmit={this.submitHandler} className={classes.root} noValidate autoComplete="off">
           <div>
             <TextField
               required
