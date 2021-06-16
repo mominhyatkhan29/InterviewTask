@@ -68,7 +68,7 @@ class CandidateType extends Component {
   }
   
   }
-  
+
   render(){
     const {classes} = this.props;
     return (
@@ -123,7 +123,6 @@ class CandidateType extends Component {
             />
             <br></br>
             <TextField
-              required
               style={{width: '85%', height: '60%'}}
               id="outlined-required"
               label="Equipment specification"

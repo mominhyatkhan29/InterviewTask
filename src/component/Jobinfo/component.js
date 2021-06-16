@@ -12,7 +12,9 @@ class JobInfoForm extends Component {
         education: "",
         skills: "",
         des: "",
-        submitted: false,
+        check1: true,
+        check2: true,
+        check3: true,
       }
       
   }
@@ -49,6 +51,28 @@ class JobInfoForm extends Component {
         });
     }
 
+    submitHandler = (e) => {
+        if(this.state.lookFor ==""){
+          e.preventDefault();
+          this.setState({
+            check1 : false
+          })
+      }
+      if(this.state.experience == "") {
+        e.preventDefault();
+        this.setState({
+          check2 : false
+        })
+      }
+      if(this.state.skills == "") {
+        e.preventDefault();
+        this.setState({
+          check3 : false
+        })
+      }
+      
+    }
+
   render(){
       const {classes, submitted} = this.props
     return (
@@ -58,6 +82,7 @@ class JobInfoForm extends Component {
               <div>
                 <TextField
                 required
+                className={this.state.check1 ? "": `${classes.err}`}
                 style={{width: '50%'}}
                 id="outlined-required"
                 placeholder="Enter value"
@@ -67,6 +92,7 @@ class JobInfoForm extends Component {
                 />
                 <TextField
                 required
+                className={this.state.check1 ? "": `${classes.err}`}
                 style={{width: '50%'}}
                 id="outlined-required"
                 label="Experience"
@@ -75,7 +101,6 @@ class JobInfoForm extends Component {
                 onChange={value=>{this.experienceHandler(value)}}
                 />
                 <TextField
-                required
                 style={{width: '30%'}}
                 id="outlined-required"
                 label="Eductaion"
@@ -86,16 +111,16 @@ class JobInfoForm extends Component {
                 </div>
                 <TextField
                 required
+                className={this.state.check1 ? "": `${classes.err}`}
                 style={{width: '100%'}}
                 id="outlined-required"
                 label="Skills"
                 placeholder="Enter value"
                 variant="outlined"
-                onChange={value=>{this.educationHandler(value)}}
+                onChange={value=>{this.skillsHandler(value)}}
                 />
                 <br></br>
                 <TextField
-                required
                 style={{width: '100%', height: '60%'}}
                 id="outlined-required"
                 label="Description"
@@ -115,7 +140,8 @@ class JobInfoForm extends Component {
                 </Button>
                 
                 <Button
-                    href="./CandidateType" 
+                    href="./CandidateType"
+                    onClick={e=>{this.submitHandler(e)}}
                     size="large"
                     className={classes.margin}
                     color="primary"
