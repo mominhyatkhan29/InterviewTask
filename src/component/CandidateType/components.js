@@ -68,9 +68,7 @@ class CandidateType extends Component {
   }
   
   }
-
   
-
   render(){
     const {classes} = this.props;
     return (
