@@ -1,3 +1,5 @@
+import { BorderColor } from "@material-ui/icons";
+
 export const styles = theme => ({
     root: {
       '& .MuiTextField-root': {
@@ -9,4 +11,8 @@ export const styles = theme => ({
       display: 'flex',
       justifyContent: 'Space-between',
     },
+    err: {
+      backgroundColor: 'red',
+      borderColor: 'red'
+    }
   });

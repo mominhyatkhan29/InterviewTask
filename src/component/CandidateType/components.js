@@ -12,18 +12,16 @@ class CandidateType extends Component {
           exsd: "",
           careerLevel: "",
           gender: "",
-          eqspecs: ""
+          eqspecs: "",
+          check1: true,
+          check2: true,
+          check3: true,
         }
     }
     HourlyRateHandler = (e) => {
             this.setState({
                 HourlyRate : e.target.value,
             })   
-    }
-    err = () => {
-        if(this.state.HourlyRate < 10){
-            alert("HOURLY RATE can not be less than 10")
-        } 
     }
 
     exsdHandler = (e) => {
@@ -33,7 +31,8 @@ class CandidateType extends Component {
   }
     careerLevelHandler = (e) => {
       this.setState({
-          careerLevel: e.target.value
+          careerLevel: e.target.value,
+          // check2: true
       })
   }
     genderHandler = (e) => {
@@ -47,17 +46,39 @@ class CandidateType extends Component {
       })
   }
 
-  submitHandler = () => {
-    
+  submitHandler = (e) => {
+    if(this.state.HourlyRate < 10  || this.state.HourlyRate ==""){
+      e.preventDefault();
+      this.setState({
+        check1 : false
+      })
+      alert("less than 10 not allowed")
   }
+  if(this.state.careerLevel == "") {
+    e.preventDefault();
+    this.setState({
+      check2 : false
+    })
+  }
+  if(this.state.gender == "") {
+    e.preventDefault();
+    this.setState({
+      check3 : false
+    })
+  }
+  
+  }
+
+  
 
   render(){
     const {classes} = this.props;
     return (
-        <form onSubmit={this.submitHandler} className={classes.root} noValidate autoComplete="off">
+        <form onSubmit={(e)=>{this.goHandler(e)}} className={classes.root} noValidate autoComplete="off">
           <div>
             <TextField
               required
+              className={this.state.check1 ? "": `${classes.err}`}
               style={{width: '40%'}}
               type="number"
               id="outlined-required"
@@ -65,10 +86,10 @@ class CandidateType extends Component {
               label="Hourly Rate"
               variant="outlined"
               onChange={value => {this.HourlyRateHandler(value)}}
-              onBlur={this.err}
             />
             <TextField
                 required
+                
                 id="date"
                 style={{width: '40%'}}
                 label="Expected Start Date"
@@ -83,6 +104,7 @@ class CandidateType extends Component {
             />
             <TextField
               required
+              className={this.state.check2 ? "": `${classes.err}`}
               style={{width: '40%'}}
               id="outlined-required"
               label="Career Level"
@@ -93,6 +115,7 @@ class CandidateType extends Component {
             
             <TextField
               required
+              className={this.state.check3 ? "": `${classes.err}`}
               style={{width: '40%'}}
               id="outlined-required"
               label="Gender"
@@ -132,6 +155,7 @@ class CandidateType extends Component {
                     color="primary"
                     variant="contained"
                     type="submit"
+                    onClick={e=>{this.submitHandler(e)}}
                     style={{width: '20%', height: '20%'}}>
                     Next
                 </Button>   
